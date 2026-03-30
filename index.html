@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> АВТО МОЙКА | Premium Wash</title>
+    <title>Автомойка ХАС | Premium Detailing</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;600;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap');
         
         body { 
             background: #000; 
@@ -15,155 +15,189 @@
             overflow-x: hidden;
         }
 
-        /* Анимированный фон */
         .bg-animate {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%);
+            background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000 100%);
             z-index: -1;
         }
         
-        .blob {
+        .glow-orb {
             position: absolute;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(191, 149, 63, 0.15) 0%, rgba(0,0,0,0) 70%);
-            filter: blur(80px);
-            animation: move 20s infinite alternate;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(191, 149, 63, 0.1) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(100px);
+            animation: pulse 10s infinite alternate;
         }
 
-        @keyframes move {
-            from { transform: translate(-20%, -20%); }
-            to { transform: translate(20%, 20%); }
+        @keyframes pulse {
+            from { opacity: 0.5; transform: scale(1); }
+            to { opacity: 1; transform: scale(1.2); }
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 35px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
         }
 
-        .gold-gradient {
-            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 100%);
+        .gold-title {
+            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #b38728 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-family: 'Syncopate', sans-serif;
         }
 
-        .input-premium {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+        .input-dark {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 18px;
             padding: 16px;
             width: 100%;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+            outline: none;
+            transition: 0.3s;
         }
 
-        .input-premium:focus {
+        .input-dark:focus {
             border-color: #bf953f;
-            box-shadow: 0 0 20px rgba(191, 149, 63, 0.2);
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(255, 255, 255, 0.06);
         }
 
-        .btn-gold {
-            background: linear-gradient(135deg, #bf953f 0%, #b38728 100%);
+        .btn-main {
+            background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728);
             color: #000;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            transition: 0.4s;
         }
 
-        .btn-gold:hover {
+        .btn-main:hover {
+            box-shadow: 0 0 25px rgba(191, 149, 63, 0.5);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(191, 149, 63, 0.4);
         }
-        
-        .label-text {
-            font-size: 11px;
-            font-weight: 700;
+
+        label {
+            font-size: 10px;
+            font-weight: 800;
+            color: #444;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #888;
+            letter-spacing: 2px;
             margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            display: block;
+            margin-left: 4px;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center py-10 px-4">
+<body class="min-h-screen flex flex-col items-center justify-center py-12 px-5">
     <div class="bg-animate">
-        <div class="blob"></div>
+        <div class="glow-orb" style="top: -100px; left: -100px;"></div>
+        <div class="glow-orb" style="bottom: -100px; right: -100px; background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(0,0,0,0) 70%);"></div>
     </div>
 
-    <div class="text-center mb-12">
-        <h1 style="font-family: 'Syncopate', sans-serif;" class="text-4xl md:text-6xl font-bold tracking-tighter gold-gradient">SIM MARKET</h1>
-        <div class="h-1 w-24 bg-gradient-to-r from-transparent via-[#bf953f] to-transparent mx-auto mt-4"></div>
-        <p class="text-zinc-500 text-[10px] uppercase tracking-[0.5em] mt-4">Хасавюрт • Бабаюртовское шоссе, 26</p>
+    <div class="text-center mb-10">
+        <h1 class="text-4xl md:text-6xl font-bold gold-title">АВТОМОЙКА ХАС</h1>
+        <p class="text-zinc-600 text-[9px] uppercase tracking-[0.5em] mt-4">Бабаюртовское шоссе, 26 • Премиум сервис</p>
     </div>
 
-    <div class="max-w-xl w-full glass-card p-8 md:p-12 relative overflow-hidden">
-        <form id="washForm" class="space-y-8">
+    <div class="max-w-md w-full glass-panel p-8 md:p-10">
+        <form id="orderForm" class="space-y-6">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label class="label-text">🚗 Класс авто</label>
-                    <select id="carClass" class="input-premium">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="col-span-2 md:col-span-1">
+                    <label>Класс автомобиля</label>
+                    <select id="carClass" class="input-dark">
                         <option value="Советская (1200 ₽)">Советская (1200 ₽)</option>
                         <option value="Иномарка (1400 ₽)">Иномарка (1400 ₽)</option>
                         <option value="Джип (1500 ₽)">Джип (1500 ₽)</option>
                     </select>
                 </div>
-                <div>
-                    <label class="label-text">🏷 Марка и модель</label>
-                    <input type="text" id="carModel" class="input-premium" placeholder="Напр: Лада Приора" required>
+                <div class="col-span-2 md:col-span-1">
+                    <label>Марка / Модель</label>
+                    <input type="text" id="carModel" class="input-dark" placeholder="Приора" required>
                 </div>
             </div>
 
             <div>
-                <label class="label-text">📞 Контактный номер</label>
-                <input type="tel" id="clientPhone" class="input-premium" placeholder="+7 (___) ___-__-__" required>
+                <label>Ваш номер телефона</label>
+                <input type="tel" id="userPhone" class="input-dark" placeholder="+7 (___) ___-__-__" required>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="label-text">✨ Основная услуга</label>
-                    <select id="service" class="input-premium">
-                        <option value="Полная">Полная мойка</option>
-                        <option value="Верх">Только верх</option>
-                        <option value="Салон">Только салон</option>
+                    <label>Тип мойки</label>
+                    <select id="washType" class="input-dark">
+                        <option value="Полная">Полная</option>
+                        <option value="Верх">Верх</option>
+                        <option value="Салон">Салон</option>
                     </select>
                 </div>
                 <div>
-                    <label class="label-text">🧼 Химчистка</label>
-                    <select id="chemClean" class="input-premium">
-                        <option value="Нет">Без химчистки</option>
+                    <label>Химчистка</label>
+                    <select id="cleaning" class="input-dark">
+                        <option value="Нет">Нет</option>
                         <option value="Ковролин">Ковролин</option>
                         <option value="Потолок">Потолок</option>
                         <option value="Багажник">Багажник</option>
                         <option value="Сиденья">Сиденья</option>
-                        <option value="Комплекс">Полный комплекс</option>
+                        <option value="Весь салон">Весь салон</option>
                     </select>
                 </div>
             </div>
 
             <div>
-                <label class="label-text">🌫 Уровень загрязнения</label>
-                <div class="grid grid-cols-2 gap-3">
-                    <select id="dirtLevel" class="input-premium col-span-2">
-                        <option value="Пыльный">Пыльный</option>
-                        <option value="Слабо грязный">Слабо грязный</option>
-                        <option value="Грязный">Грязный</option>
-                        <option value="Очень грязный">Очень грязный</option>
-                    </select>
-                </div>
+                <label>Состояние кузова</label>
+                <select id="dirt" class="input-dark">
+                    <option value="Пыльный">Пыльный</option>
+                    <option value="Грязный">Грязный</option>
+                    <option value="Очень грязный">Очень грязный</option>
+                </select>
             </div>
 
-            <button type="submit" id="submitBtn" class="btn-gold w-full py-5 rounded-2xl text-lg shadow-xl active:scale-95">
-                Записаться на мойку
+            <button type="submit" id="btn" class="btn-main w-full py-5 text-sm shadow-2xl">
+                Записаться
             </button>
         </form>
     </div>
 
-    <div class="mt-10
+    <footer class="mt-10 text-center">
+        <a href="https://t.me/SIamshop001" class="text-zinc-700 hover:text-[#bf953f] transition text-[10px] uppercase tracking-widest font-bold">Связаться с Курбаном</a>
+    </footer>
+
+    <script>
+        const TOKEN = '8666944440:AAFAmQuYaYmnJjhuQ9AmdBQim9V-kxNnxAo'; //
+        const CHAT_ID = '8768514374'; //
+
+        document.getElementById('orderForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn');
+            btn.innerText = "ОТПРАВЛЯЕМ...";
+            btn.disabled = true;
+
+            const text = `🌊 <b>ЗАЯВКА: АВТОМОЙКА ХАС</b>\n\n` +
+                         `📞 <b>Тел:</b> ${document.getElementById('userPhone').value}\n` +
+                         `🚗 <b>Авто:</b> ${document.getElementById('carModel').value} (${document.getElementById('carClass').value})\n` +
+                         `🧼 <b>Мойка:</b> ${document.getElementById('washType').value}\n` +
+                         `✨ <b>Химчистка:</b> ${document.getElementById('cleaning').value}\n` +
+                         `🌫 <b>Состояние:</b> ${document.getElementById('dirt').value}`;
+
+            try {
+                await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
+                });
+                alert('✅ Заявка отправлена! Мы ждем вас.');
+                location.reload();
+            } catch (err) {
+                alert('Ошибка отправки. Попробуйте еще раз.');
+                btn.disabled = false;
+                btn.innerText = "ЗАПИСАТЬСЯ";
+            }
+        };
+    </script>
+</body>
+</html>
