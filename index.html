@@ -1,42 +1,28 @@
-<script>
-    const BOT_TOKEN = '8666944440:AAFAmQuYaYmnJjhuQ9AmdBQim9V-kxNnxAo';
-    const ADMIN_ID = '8768514374';
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автомойка SIM MARKET | Премиальный сервис</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { background-color: #050505; color: #fff; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 32px; }
+        .field { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 14px; width: 100%; color: white; outline: none; transition: 0.3s; }
+        .field:focus { border-color: #bf953f; background: rgba(255, 255, 255, 0.1); }
+        .gold { background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        label { display: block; text-transform: uppercase; font-size: 10px; font-weight: 700; color: #52525b; letter-spacing: 0.2em; margin-bottom: 8px; margin-left: 4px; }
+        .status-badge { font-size: 9px; padding: 2px 8px; border-radius: 100px; background: rgba(191, 149, 63, 0.1); color: #bf953f; border: 1px solid rgba(191, 149, 63, 0.2); }
+    </style>
+</head>
+<body class="min-h-screen py-12 px-4 bg-black flex flex-col items-center">
 
-    document.getElementById('washForm').onsubmit = function(e) {
-        e.preventDefault();
-        
-        const model = document.getElementById('carModel').value;
-        const phone = document.getElementById('clientPhone').value;
-        const category = document.getElementById('carCategory').options[document.getElementById('carCategory').selectedIndex].text;
-        const service = document.getElementById('service').value;
-        const price = document.getElementById('finalPrice').innerText;
-        const time = document.getElementById('visitTime').value;
+    <header class="text-center mb-10">
+        <div class="inline-block status-badge mb-4 uppercase tracking-widest">Premium Detailing Service</div>
+        <h1 class="text-5xl font-black tracking-tighter gold">SIM MARKET</h1>
+        <p class="text-zinc-500 text-[10px] uppercase tracking-[0.4em] mt-3">Бабаюртовское шоссе, 26 • Хасавюрт</p>
+    </header>
 
-        const msg = `🧽 ЗАПИСЬ НА МОЙКУ\n\n📞 Тел: ${phone}\n🚗 Авто: ${model} (${category})\n✨ Услуга: ${service}\n📅 Время: ${time}\n💰 Итог: ${price}`;
-
-        // Используем более надежный метод отправки
-        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-        const params = {
-            chat_id: ADMIN_ID,
-            text: msg,
-            parse_mode: 'HTML'
-        };
-
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(params)
-        })
-        .then(response => {
-            if (response.ok) {
-                alert('✅ Заявка отправлена!');
-                location.reload();
-            } else {
-                alert('❌ Ошибка бота. Проверьте, нажали ли вы START в боте.');
-            }
-        })
-        .catch(err => alert('❌ Ошибка сети: ' + err));
-    };
-</script>
+    <div class="max-w-xl w-full glass p-10 shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg
