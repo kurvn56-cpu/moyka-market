@@ -3,96 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Автомойка SIM MARKET</title>
+    <title>Автомойка SIM MARKET | Хасавюрт</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { background-color: #050505; color: #fff; font-family: 'Inter', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 32px; }
-        .field { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 14px; width: 100%; color: white; outline: none; }
+        body { background-color: #050505; color: #fff; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 28px; }
+        .field { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 12px; width: 100%; color: white; outline: none; transition: 0.3s; font-size: 14px; }
+        .field:focus { border-color: #bf953f; background: rgba(255, 255, 255, 0.08); }
         .gold { background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        label { display: block; text-transform: uppercase; font-size: 10px; font-weight: 700; color: #71717a; letter-spacing: 0.1em; margin-bottom: 6px; margin-left: 4px; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-6 bg-black">
+<body class="min-h-screen py-10 px-4 bg-black flex flex-col items-center">
 
-    <header class="text-center mb-10">
-        <h1 class="text-5xl font-black tracking-tighter gold">АВТОМОЙКА</h1>
-        <p class="text-zinc-500 text-[10px] uppercase tracking-[0.4em] mt-2">Бабаюртовское шоссе, 26</p>
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-black tracking-tighter gold">АВТОМОЙКА</h1>
+        <p class="text-zinc-500 text-[10px] uppercase tracking-[0.3em] mt-2">Бабаюртовское шоссе, 26</p>
     </header>
 
-    <div class="max-w-md w-full glass p-10 shadow-2xl">
-        <form id="washForm" class="space-y-6">
-            <div>
-                <label class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-3">Категория авто</label>
-                <select id="carCategory" class="field" onchange="document.getElementById('finalPrice').innerText = this.value + ' ₽'">
+    <div class="max-w-lg w-full glass p-8 shadow-2xl">
+        <form id="washForm" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            
+            <div class="md:col-span-1">
+                <label>Класс автомобиля</label>
+                <select id="carCategory" class="field" onchange="updatePrice()">
                     <option value="1200">Советская (1200 ₽)</option>
                     <option value="1400">Иномарка (1400 ₽)</option>
                     <option value="1500">Джип (1500 ₽)</option>
                 </select>
             </div>
-
-            <div>
-                <label class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-3">Марка и модель</label>
-                <input type="text" id="carModel" class="field" placeholder="Напр: Приора или Toyota Camry" required>
+            <div class="md:col-span-1">
+                <label>Марка и модель</label>
+                <input type="text" id="carModel" class="field" placeholder="Напр: Camry" required>
             </div>
 
-            <div>
-                <label class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-3">Состояние</label>
-                <select id="dirtLevel" class="field">
-                    <option value="Грязный">Грязный</option>
-                    <option value="Сильно грязный">Сильно грязный</option>
-                    <option value="Слабо грязный">Слабо грязный</option>
-                    <option value="Пыльный">Пыльный</option>
-                </select>
+            <div class="md:col-span-2">
+                <label>Ваш номер телефона</label>
+                <input type="tel" id="clientPhone" class="field" placeholder="+7 (999) 000-00-00" required>
             </div>
 
-            <div>
-                <label class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-3">Услуга</label>
+            <div class="md:col-span-1">
+                <label>Основная услуга</label>
                 <select id="service" class="field">
                     <option value="Полная">Полная мойка</option>
                     <option value="Верх">Только верх</option>
                     <option value="Салон">Только салон</option>
                 </select>
             </div>
+            <div class="md:col-span-1">
+                <label>Химчистка (Доп.)</label>
+                <select id="chemClean" class="field">
+                    <option value="Нет">Без химчистки</option>
+                    <option value="Ковролин">Ковролин</option>
+                    <option value="Потолок">Потолок</option>
+                    <option value="Багажник">Багажник</option>
+                    <option value="Сиденья">Сиденья</option>
+                    <option value="Комплекс">Химчистка (Всё)</option>
+                </select>
+            </div>
 
-            <div class="pt-6 border-t border-white/5 flex justify-between items-end">
-                <span class="text-zinc-500 text-sm">К оплате:</span>
+            <div class="md:col-span-1">
+                <label>Степень загрязнения</label>
+                <select id="dirtLevel" class="field">
+                    <option value="Пыльный">Пыльный</option>
+                    <option value="Слабо грязный">Слабо грязный</option>
+                    <option value="Грязный">Грязный</option>
+                    <option value="Сильно грязный">Сильно грязный</option>
+                </select>
+            </div>
+            <div class="md:col-span-1">
+                <label>Желаемое время</label>
+                <input type="datetime-local" id="visitTime" class="field" required>
+            </div>
+
+            <div class="md:col-span-2">
+                <label>Дополнительно (пожелания)</label>
+                <textarea id="comment" class="field h-20 resize-none" placeholder="Напр: почистить коврики отдельно"></textarea>
+            </div>
+
+            <div class="md:col-span-2 pt-4 border-t border-white/5 flex justify-between items-center">
+                <span class="text-zinc-500 text-sm font-bold uppercase">Итого:</span>
                 <span id="finalPrice" class="text-3xl font-black text-white">1200 ₽</span>
             </div>
 
-            <button type="submit" class="w-full py-5 bg-white text-black rounded-2xl font-black uppercase tracking-tighter hover:bg-zinc-200 transition active:scale-95">
-                Записаться
+            <button type="submit" class="md:col-span-2 py-4 bg-white text-black rounded-2xl font-black uppercase tracking-tighter hover:bg-zinc-200 transition active:scale-95 shadow-lg shadow-white/5">
+                Записаться на мойку
             </button>
         </form>
     </div>
 
     <script>
-        const BOT_TOKEN = '8666944440:AAFAmQuYaYmnJjhuQ9AmdBQim9V-kxNnxAo';
-        const ADMIN_ID = '8768514374';
+        const BOT_TOKEN = '8666944440:AAFAmQuYaYmnJjhuQ9AmdBQim9V-kxNnxAo'; [span_0](start_span)// Твой токен[span_0](end_span)
+        const ADMIN_ID = '8768514374'; [span_1](start_span)// Твой ID[span_1](end_span)
+
+        function updatePrice() {
+            const val = document.getElementById('carCategory').value;
+            document.getElementById('finalPrice').innerText = val + ' ₽';
+        }
 
         document.getElementById('washForm').onsubmit = async (e) => {
             e.preventDefault();
             
-            const category = document.getElementById('carCategory').options[document.getElementById('carCategory').selectedIndex].text;
             const model = document.getElementById('carModel').value;
+            const phone = document.getElementById('clientPhone').value;
+            const category = document.getElementById('carCategory').options[document.getElementById('carCategory').selectedIndex].text;
+            const chem = document.getElementById('chemClean').value;
             const dirt = document.getElementById('dirtLevel').value;
-            const service = document.getElementById('service').value;
+            const time = document.getElementById('visitTime').value.replace('T', ' ');
+            const comment = document.getElementById('comment').value || 'Нет';
             const price = document.getElementById('finalPrice').innerText;
 
-            const msg = `🧽 **НОВАЯ ЗАЯВКА**\n\n` +
+            const msg = `🧽 **НОВАЯ ЗАПИСЬ НА МОЙКУ**\n\n` +
+                        `👤 **Телефон:** ${phone}\n` +
                         `🚗 **Авто:** ${model} (${category})\n` +
+                        `✨ **Услуга:** ${document.getElementById('service').value}\n` +
+                        `🧼 **Химчистка:** ${chem}\n` +
                         `🌫 **Состояние:** ${dirt}\n` +
-                        `✨ **Услуга:** ${service}\n` +
-                        `💰 **Итог:** ${price}`;
+                        `📅 **Время:** ${time}\n` +
+                        `📝 **Заметка:** ${comment}\n\n` +
+                        `💰 **К ОПЛАТЕ:** ${price}`;
 
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${ADMIN_ID}&text=${encodeURIComponent(msg)}&parse_mode=Markdown`;
 
             try {
                 await fetch(url);
-                alert('✅ Заявка отправлена!');
+                alert('✅ Заявка принята! Курбан свяжется с вами.');
                 location.reload();
             } catch (err) {
-                alert('❌ Ошибка сети.');
+                alert('❌ Ошибка связи. Проверьте интернет.');
             }
         };
     </script>
